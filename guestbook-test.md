@@ -9,36 +9,35 @@ assignees:
 This example shows how to build a simple, multi-tier web application using Kubernetes and [Docker](https://www.docker.com/).
 
 **Table of Contents**
-<!-- BEGIN MUNGE: GENERATED_TOC -->
-
-  - [Guestbook Example](#guestbook-example)
-    - [Prerequisites](#prerequisites)
-    - [Quick Start](#quick-start)
-    - [Step One: Start up the redis master](#step-one-start-up-the-redis-master)
-      - [Define a Deployment](#define-a-deployment)
-      - [Define a Service](#define-a-service)
-      - [Create a Service](#create-a-service)
-      - [Finding a Service](#finding-a-service)
-        - [Environment variables](#environment-variables)
-        - [DNS service](#dns-service)
-      - [Create a Deployment](#create-a-deployment)
-      - [Optional Interlude](#optional-interlude)
-    - [Step Two: Start up the redis slave](#step-two-start-up-the-redis-slave)
-    - [Step Three: Start up the guestbook frontend](#step-three-start-up-the-guestbook-frontend)
-      - [Using 'type: LoadBalancer' for the frontend service (cloud-provider-specific)](#using-type-loadbalancer-for-the-frontend-service-cloud-provider-specific)
-    - [Step Four: Cleanup](#step-four-cleanup)
-    - [Troubleshooting](#troubleshooting)
-    - [Appendix: Accessing the guestbook site externally](#appendix-accessing-the-guestbook-site-externally)
-      - [Google Compute Engine External Load Balancer Specifics](#google-compute-engine-external-load-balancer-specifics)
-
-<!-- END MUNGE: GENERATED_TOC -->
 -->
 
-This example shows how to build a simple, multi-tier web application using Kubernetes and [Docker](https://www.docker.com/).
 此示例展示如何使用 Kubernetes 和 [Docker](https://www.docker.com/)构建一个简单的多层 Web 应用程序。
 
 **目录**
+
 <!-- BEGIN MUNGE: GENERATED_TOC -->
+
+<!-- 
+  - [Guestbook Example](#guestbook-example)
+    - [Prerequisites](#prerequisites)
+    - [Quick Start](#quick-start)
+    - [Step One: Start up the redis master](#step-one-start-up-the-redis-master)
+      - [Define a Deployment](#define-a-deployment)
+      - [Define a Service](#define-a-service)
+      - [Create a Service](#create-a-service)
+      - [Finding a Service](#finding-a-service)
+        - [Environment variables](#environment-variables)
+        - [DNS service](#dns-service)
+      - [Create a Deployment](#create-a-deployment)
+      - [Optional Interlude](#optional-interlude)
+    - [Step Two: Start up the redis slave](#step-two-start-up-the-redis-slave)
+    - [Step Three: Start up the guestbook frontend](#step-three-start-up-the-guestbook-frontend)
+      - [Using 'type: LoadBalancer' for the frontend service (cloud-provider-specific)](#using-type-loadbalancer-for-the-frontend-service-cloud-provider-specific)
+    - [Step Four: Cleanup](#step-four-cleanup)
+    - [Troubleshooting](#troubleshooting)
+    - [Appendix: Accessing the guestbook site externally](#appendix-accessing-the-guestbook-site-externally)
+      - [Google Compute Engine External Load Balancer Specifics](#google-compute-engine-external-load-balancer-specifics)
+-->
 
   - [Guestbook Example](#guestbook-example)
     - [Prerequisites](#prerequisites)
@@ -59,8 +58,6 @@ This example shows how to build a simple, multi-tier web application using Kuber
     - [Troubleshooting](#troubleshooting)
     - [Appendix: Accessing the guestbook site externally](#appendix-accessing-the-guestbook-site-externally)
       - [Google Compute Engine External Load Balancer Specifics](#google-compute-engine-external-load-balancer-specifics)
-
-<!-- END MUNGE: GENERATED_TOC -->
 
 <!-- 
 The example consists of:
@@ -76,14 +73,14 @@ The web frontend interacts with the redis master via javascript redis API calls.
 
 示例包括:
 
-- 一个Web前端
-- 一个[redis]（http://redis.io/）master（用于存储）和一个主从复制的redis 'slaves'。
+- 一个 Web 前端
+- 一个[redis](http://redis.io/) master（用于存储）和一个主从复制的 redis 'slaves' 。
 
-Web前端通过javascript redis API调用与redis master交互。
+Web 前端通过 javascript redis API 调用与 redis master 交互。
 
-**注意**：如果您在 [Google Container Engine]（https://cloud.google.com/container-engine/）中安装运行此示例，
-请参阅 [this Google Container Engine guestbook walkthrough]（https：/ /cloud.google.com/container-engine/docs/tutorials/guestbook）。 
-基本概念是相同的，但是演练是针对Container Engine设置的。
+**注意**：如果您在 [Google Container Engine](https://cloud.google.com/container-engine/) 中安装运行此示例，
+请参阅 [this Google Container Engine guestbook walkthrough](https://cloud.google.com/container-engine/docs/tutorials/guestbook)。 
+基本概念是相同的，但是演练是针对 Container Engine 设置的。
 
 <!-- 
 ### Prerequisites
@@ -108,11 +105,11 @@ All the files referenced in this example can be downloaded [from GitHub](https:/
 $ kubectl cluster-info
 ```
 
-如果你看到一个 url 的回显信息，说明你已经准备好了。 如果没有，请阅读 [Getting Started guides]（http://kubernetes.io/docs/getting-started-guides/）了解如何入门，
-并按照 [prerequisites](http://kubernetes.io/docs/user-guide/prereqs/)来安装和配置`kubectl`。 如上所述，如果您设置了 Google Container Engine 集群，
-请改为阅读 [本示例]（https://cloud.google.com/container-engine/docs/tutorials/guestbook）。
+如果你看到一个 url 的回显信息，说明你已经准备好了。 如果没有，请阅读[入门指南](http://kubernetes.io/docs/getting-started-guides/)了解如何入门，
+并按照[前提](http://kubernetes.io/docs/user-guide/prereqs/)来安装和配置 `kubectl` 。 如上所述，如果您设置了 Google Container Engine 集群，
+请改为阅读[本示例](https://cloud.google.com/container-engine/docs/tutorials/guestbook)。
 
-本示例中引用的所有文件都可以从 [GitHub]（https://git.k8s.io/examples/guestbook） 下载。
+本示例中引用的所有文件都可以从 [GitHub](https://git.k8s.io/examples/guestbook) 下载。
 
 <!-- 
 ### Quick Start
@@ -165,7 +162,7 @@ $ kubectl delete -f guestbook/
 
 ### 快速开始
 
-本节展示了使示例工作最简单的方法。 如果你想知道这些细节，你应该跳过这个并阅读 [剩下的例子](#step-one-start-up-the-redis-master)。
+本节展示了使示例工作最简单的方法。 如果你想知道这些细节，你应该跳过这个并阅读[剩下的例子](#step-one-start-up-the-redis-master)。
 
 用一个命令启动 guestbook ：
 
@@ -195,10 +192,10 @@ redis-master   10.0.0.170   <none>        6379/TCP   20s
 redis-slave    10.0.0.201   <none>        6379/TCP   20s
 ```
 
-现在，您可以用前端服务的`<Cluster-IP>:<PORT>`访问每个节点上的 guestbook ，例如 本指南中的`10.0.0.117:80`。 `<Cluster-IP>`是集群内部的 IP 。 
-如果要从群集外部访问guestbook，请在前端Service的`spec`字段中添加`type: NodePort`。 然后，您可以从集群外部使用`<NodeIP>:NodePort`访问 guestbook 。 
+现在，您可以用前端服务的 `<Cluster-IP>:<PORT>` 访问每个节点上的 guestbook ，例如 本指南中的 `10.0.0.117:80` 。 `<Cluster-IP>` 是集群内部的 IP 。 
+如果要从群集外部访问 guestbook ，请在前端 Service 的 `spec` 字段中添加 `type: NodePort` 。 然后，您可以从集群外部使用 `<NodeIP>:NodePort` 访问 guestbook 。 
 在支持外部负载平衡器的云提供商上，将`type: LoadBalancer`添加到前端 Service 的`spec`字段中将为您的 Service 提供负载均衡器。 有几种访问 guestbook 的方法， 
-请参阅 [访问集群中运行的服务](https://kubernetes.io/docs/concepts/cluster-administration/access-cluster/#accessing-services-running-on-the-cluster)。
+请参阅[访问集群中运行的服务](https://kubernetes.io/docs/concepts/cluster-administration/access-cluster/#accessing-services-running-on-the-cluster)。
 
 清除 guestbook :
 
@@ -237,13 +234,9 @@ The file [redis-master-deployment.yaml](redis-master-deployment.yaml) defines th
 
 #### 定义 Deployment
 
-To start the redis master, use the file [redis-master-deployment.yaml](https://git.k8s.io/examples/guestbook/redis-master-deployment.yaml), 
-which describes a single [pod](http://kubernetes.io/docs/user-guide/pods/) running a redis key-value server in a container.
 用文件 [redis-master-deployment.yaml](https://git.k8s.io/examples/guestbook/redis-master-deployment.yaml) 启动 redis master ，
 该文件描述了一个 [pod](http://kubernetes.io/docs/user-guide/pods/)在容器中运行 redis key-value server 。
 
-Although we have a single instance of our redis master, we are using a [Deployment](http://kubernetes.io/docs/user-guide/deployments/) to enforce that exactly one pod keeps running. 
-E.g., if the node were to go down, the Deployment will ensure that the redis master gets restarted on a healthy node. (In our simplified example, this could result in data loss.)
 虽然我们有一个单独的 redis master 实例，但是我们使用 [Deployment](http://kubernetes.io/docs/user-guide/deployments/) 来强制保证有一个 pod 在运行。 
 例如，如果节点要关闭，那么 Deployment 会确保 redis master 在一个健康节点上重新启动。 （我们这个简单示例，会导致数据丢失。）
 
@@ -372,7 +365,6 @@ redis-master      10.0.76.248      <none>            6379/TCP      1s
 
 #### 创建 Service
 
-According to the [config best practices](http://kubernetes.io/docs/user-guide/config-best-practices/), create a Service before corresponding Deployments so that the scheduler can spread the pods comprising the Service. So we first create the Service by running:
 根据 [config最佳实践](http://kubernetes.io/docs/user-guide/config-best-practices/)，在创建 Deployments 之前创建相应的 Service ，以便调度程序可以传播构成 Service 的 pod 。 
 所以我们先创建 Service ：
 
@@ -381,7 +373,6 @@ $ kubectl create -f guestbook/redis-master-service.yaml
 service "redis-master" created
 ```
 
-Then check the list of services, which should include the redis-master:
 然后检查 services 列表，其中应包括 redis-master ：
 
 ```console
@@ -545,14 +536,13 @@ redis-master-2353460263-1ecey   1/1       Running   0          1m
 
 （请注意，根据网络环境，初始的 `docker pull` 拉取容器镜像可能需要几分钟的时间，当镜像下载完后，pod 的状态将会显示为 `Pending` ）。
 
-`kubectl get pods` will show only the pods in the default [namespace](http://kubernetes.io/docs/user-guide/namespaces/).  To see pods in all namespaces, run:
 `kubectl get pods` 只显示默认 [namespace]（http://kubernetes.io/docs/user-guide/namespaces/）中的 pod 。 要查看所有 namespaces 中的 pod ，请运行：
 
 ```
 kubectl get pods --all-namespaces
 ```
 
-有关详细信息，请参阅[配置容器](http://kubernetes.io/docs/user-guide/configuring-containers/)和[部署应用程序](http://kubernetes.io/docs/user-guide/deploying-applications/)。
+更多详细信息，请参阅[配置容器](http://kubernetes.io/docs/user-guide/configuring-containers/)和[部署应用程序](http://kubernetes.io/docs/user-guide/deploying-applications/)。
 
 <!-- 
 #### Optional Interlude
@@ -561,10 +551,9 @@ You can get information about a pod, including the machine that it is running on
 
 -->
 
-#### Optional Interlude
+#### 小插曲
 
-You can get information about a pod, including the machine that it is running on, via `kubectl describe pods/<POD-NAME>`.  E.g., for the redis master, you should see something like the following (your pod name will be different):
-您可以通过`kubectl describe pods / <POD-NAME>`获取有关pod的信息，包括运行的机器。 例如，对于redis主人，您应该看到如下所示（您的pod名称将不同）：
+您可以通过 `kubectl describe pods/<POD-NAME>` 获取有关pod的信息，包括运行的机器。 例如，对于redis master ，您应该看到如下所示（您的pod名称将不同）：
 
 ```console
 $ kubectl describe pods redis-master-2353460263-1ecey
@@ -792,7 +781,6 @@ You should see a single redis master pod and two redis slave pods.  As mentioned
 
 -->
 
-Once the Deployment is up, you can list the pods in the cluster, to verify that the master and slaves are running.  You should see a list that includes something like the following:
 当 Deployment 运行后，您可以列出群集中的 pod ，以验证 master 和 slaves 是否正在运行。 您可以看到类似于以下内容的清单：
 
 ```console
@@ -821,7 +809,7 @@ The Deployment and Service are described in the file [all-in-one/frontend.yaml](
 前端 pod 是一个简单的 PHP 服务器，配置为 slave 和 master 之间的 services 进行通信，具体取决于客户端的请求是读取还是写入的。 它暴露了一个简单的 AJAX 接口，并提供 Angular-based UX 服务。
 然后，我们将用 Deployment 创建由前端 pod 副本组成的实例 - 这次有3个 replicas 。
 
-与其他pod一样，我们现在想创建一个 Service 来分组前端 pod。
+与其他 pod 一样，我们现在想创建一个 Service 来分组前端 pod 。
 Deployment 和 Service 的配置文档 [all-in-one/frontend.yaml](https://git.k8s.io/examples/guestbook/all-in-one/frontend.yaml):
 
 <!-- BEGIN MUNGE: EXAMPLE all-in-one/frontend.yaml -->
