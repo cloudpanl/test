@@ -106,7 +106,7 @@ $ kubectl cluster-info
 ```
 
 如果你看到一个 url 的回显信息，说明你已经准备好了。 如果没有，请阅读[入门指南](http://kubernetes.io/docs/getting-started-guides/)了解如何入门，
-并按照[前提](http://kubernetes.io/docs/user-guide/prereqs/)来安装和配置 `kubectl` 。 如上所述，如果您设置了 Google Container Engine 集群，
+并按照[先决条件](http://kubernetes.io/docs/user-guide/prereqs/)来安装和配置 `kubectl` 。 如上所述，如果您设置了 Google Container Engine 集群，
 请改为阅读[本示例](https://cloud.google.com/container-engine/docs/tutorials/guestbook)。
 
 本示例中引用的所有文件都可以从 [GitHub](https://git.k8s.io/examples/guestbook) 下载。
