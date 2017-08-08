@@ -39,25 +39,25 @@ This example shows how to build a simple, multi-tier web application using Kuber
       - [Google Compute Engine External Load Balancer Specifics](#google-compute-engine-external-load-balancer-specifics)
 -->
 
-  - [Guestbook Example](#guestbook-example)
-    - [Prerequisites](#prerequisites)
-    - [Quick Start](#quick-start)
-    - [Step One: Start up the redis master](#step-one-start-up-the-redis-master)
-      - [Define a Deployment](#define-a-deployment)
-      - [Define a Service](#define-a-service)
-      - [Create a Service](#create-a-service)
-      - [Finding a Service](#finding-a-service)
-        - [Environment variables](#environment-variables)
-        - [DNS service](#dns-service)
-      - [Create a Deployment](#create-a-deployment)
-      - [Optional Interlude](#optional-interlude)
-    - [Step Two: Start up the redis slave](#step-two-start-up-the-redis-slave)
-    - [Step Three: Start up the guestbook frontend](#step-three-start-up-the-guestbook-frontend)
-      - [Using 'type: LoadBalancer' for the frontend service (cloud-provider-specific)](#using-type-loadbalancer-for-the-frontend-service-cloud-provider-specific)
-    - [Step Four: Cleanup](#step-four-cleanup)
-    - [Troubleshooting](#troubleshooting)
-    - [Appendix: Accessing the guestbook site externally](#appendix-accessing-the-guestbook-site-externally)
-      - [Google Compute Engine External Load Balancer Specifics](#google-compute-engine-external-load-balancer-specifics)
+  - [Guestbook 示例](#Guestbook 示例)
+    - [先决条件](#先决条件)
+    - [快速开始](#快速开始)
+    - [第一步：启动 redis master](#第一步：启动 redis master)
+      - [定义 Deployment](#定义 Deployment)
+      - [定义 Service](#定义 Service)
+      - [创建 Service](#创建 Service)
+      - [Service 发现](#Service 发现)
+        - [环境变量](#环境变量)
+        - [DNS 服务](#DNS 服务)
+      - [创建 Deployment](#创建 Deployment)
+      - [小插曲](#小插曲)
+    - [第二步：启动 redis slave](#第二步：启动 redis slave)
+    - [第三步：启动 guestbook 的前端](#第三步：启动 guestbook 的前端)
+      - [对前端服务使用 'type: LoadBalancer' （特定云提供商）](#对前端服务使用 'type: LoadBalancer' （特定云提供商）)
+    - [第四步：清理](#第四步：清理)
+    - [故障排除](#故障排除)
+    - [附录：外部访问 guestbook 站点](#附录：外部访问 guestbook 站点)
+      - [Google Compute Engine 外部负载均衡器详细信息](#Google Compute Engine 外部负载均衡器详细信息)
 
 <!-- 
 The example consists of:
@@ -74,7 +74,7 @@ The web frontend interacts with the redis master via javascript redis API calls.
 示例包括:
 
 - 一个 Web 前端
-- 一个[redis](http://redis.io/) master（用于存储）和一个主从复制的 redis 'slaves' 。
+- 一个 [redis](http://redis.io/) master（用于存储）和一个主从复制的 redis 'slaves' 。
 
 Web 前端通过 javascript redis API 调用与 redis master 交互。
 
@@ -413,9 +413,9 @@ For more details, please see [Connecting applications](http://kubernetes.io/docs
 Kubernetes supports two primary modes of finding a Service — environment variables and DNS.
 -->
 
-#### 查找 Service
+#### Service 发现
 
-Kubernetes 主要支持两种模式的查找 Service - 环境变量和 DNS 。
+Kubernetes 主要支持两种模式的 Service 发现 - 环境变量和 DNS 。
 
 <!-- 
 ##### Environment variables
@@ -1174,10 +1174,6 @@ For Google Compute Engine details about limiting traffic to specific sources, se
 
 [cloud-console]: https://console.developer.google.com
 [gce-firewall-docs]: https://cloud.google.com/compute/docs/networking#firewalls
-
-<!-- BEGIN MUNGE: GENERATED_ANALYTICS -->
-[![Analytics](https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/examples/guestbook/README.md?pixel)]()
-<!-- END MUNGE: GENERATED_ANALYTICS -->
 -->
 
 对于GCE Kubernetes的启动细节，请参阅[开始使用 Google Compute Engine](http://kubernetes.io/docs/getting-started-guides/gce/)
