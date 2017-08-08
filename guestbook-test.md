@@ -39,7 +39,7 @@ This example shows how to build a simple, multi-tier web application using Kuber
       - [Google Compute Engine External Load Balancer Specifics](#google-compute-engine-external-load-balancer-specifics)
 -->
 
-  - [Guestbook 示例](#Guestbook 示例)
+  - [Guestbook 示例](#Guestbook-示例)
     - [先决条件](#先决条件)
     - [快速开始](#快速开始)
     - [第一步：启动 redis master](#第一步：启动 redis master)
