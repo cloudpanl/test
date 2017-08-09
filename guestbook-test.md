@@ -52,7 +52,7 @@ This example shows how to build a simple, multi-tier web application using Kuber
       - [创建 Deployment](#创建-deployment)
       - [小插曲](#小插曲)
     - [第二步：启动 redis slave](#第二步:启动-redis-slave)
-    - [第三步：启动 guestbook 的前端](#第三步:启动-guestbook-的前端)
+    - [第三步 启动 guestbook 的前端](#第三步-启动-guestbook-的前端)
       - [对前端服务使用 'type: LoadBalancer' （特定云提供商）](#对前端服务使用-type-LoadBalancer-特定云提供商)
     - [第四步：清理](#第四步-清理)
     - [故障排除](#故障排除)
@@ -804,7 +804,7 @@ As with the other pods, we now want to create a Service to group the frontend po
 The Deployment and Service are described in the file [all-in-one/frontend.yaml](https://git.k8s.io/examples/guestbook/all-in-one/frontend.yaml):
 -->
 
-### 第三步：启动 guestbook 的前端
+### 第三步 启动 guestbook 的前端
 
 前端 pod 是一个简单的 PHP 服务器，配置为 slave 和 master 之间的 services 进行通信，具体取决于客户端的请求是读取还是写入的。 它暴露了一个简单的 AJAX 接口，并提供 Angular-based UX 服务。
 然后，我们将用 Deployment 创建由前端 pod 副本组成的实例 - 这次有3个 replicas 。
@@ -1059,7 +1059,7 @@ $ <kubernetes>/cluster/kube-down.sh
 ```
 -->
 
-### 第四步：清理
+### 第四步:清理
 
 如果你在一个运行中的 Kubernetes 集群，你可以通过删除 Deployments 和 Services 来杀死pod。 使用 labels 来选择要删除的资源也是一种简单的方法。
 
