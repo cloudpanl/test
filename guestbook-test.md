@@ -1097,7 +1097,7 @@ More generally, Kubernetes supports two ways of exposing a Service onto an exter
 If the `LoadBalancer` specification is used, it can take a short period for an external IP to show up in `kubectl get services` output, but you should then see it listed as well, e.g. like this:
 -->
 
-### 附录:外部访问 guestbook 站点
+### 附录 外部访问 guestbook 站点
 
 您将需要设置您的 guestbook Service ，以便可以从 Kubernetes 外部网络访问。 上面我们介绍了一种方法，通过设置 Service `spec` 中的 `type: LoadBalancer` 。
 更普遍的，Kubernetes 支持将 Service 暴露在外部 IP 地址上的两种方式：`NodePort` 和 `LoadBalancer` ，详情请浏览[这里](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services---service-types)。
