@@ -53,7 +53,7 @@ This example shows how to build a simple, multi-tier web application using Kuber
       - [小插曲](#小插曲)
     - [第二步：启动 redis slave](#第二步-启动-redis-slave)
     - [第三步：启动 guestbook 的前端](#第三步-启动-guestbook-的前端)
-      - [对前端服务使用 'type: LoadBalancer' （特定云提供商）](#对前端服务使用-type-LoadBalancer-特定云提供商)
+      - [对前端服务使用 'type: LoadBalancer' （特定云提供商）](#对前端服务使用-type-loadbalancer-特定云提供商)
     - [第四步：清理](#第四步-清理)
     - [故障排除](#故障排除)
     - [附录：外部访问 guestbook 站点](#附录-外部访问-guestbook-站点)
@@ -898,12 +898,12 @@ deployment "frontend" created
 ```
 -->
 
-#### 对前端服务使用 'type: LoadBalancer' （特定云提供商）
+#### 对前端服务使用 'type: LoadBalancer' (特定云提供商)
 
 对于支持此服务的云提供商（如 Google Compute Engine 或 Google Container Engine ），您可以在service 的 `spec` 中指定使用外部负载均衡器，将 service 暴露到外部负载均衡器的 IP 。
 为此，在启动 service 之前，请取消 [all-in-one/frontend.yaml](https://git.k8s.io/examples/guestbook/all-in-one/frontend.yaml) 文件中的 `type: LoadBalancer` 行的注释。
 
-有关 guestbook 站点外部访问的更多详细信息[请参阅下面的附录](#附录 外部访问 guestbook 站点) 。
+有关 guestbook 站点外部访问的更多详细信息[请参阅下面的附录](#附录：外部访问 guestbook 站点) 。
 
 这样创建 service 和 Deployment:
 
