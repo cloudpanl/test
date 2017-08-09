@@ -536,7 +536,7 @@ redis-master-2353460263-1ecey   1/1       Running   0          1m
 
 （请注意，根据网络环境，初始的 `docker pull` 拉取容器镜像可能需要几分钟的时间，当镜像下载完后，pod 的状态将会显示为 `Pending` ）。
 
-`kubectl get pods` 只显示默认 [namespace]（http://kubernetes.io/docs/user-guide/namespaces/）中的 pod 。 要查看所有 namespaces 中的 pod ，请运行：
+`kubectl get pods` 只显示默认 [namespace](http://kubernetes.io/docs/user-guide/namespaces/)中的 pod 。 要查看所有 namespaces 中的 pod ，请运行：
 
 ```
 kubectl get pods --all-namespaces
