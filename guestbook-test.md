@@ -42,7 +42,7 @@ This example shows how to build a simple, multi-tier web application using Kuber
   - [Guestbook 示例](#guestbook-示例)
     - [先决条件](#先决条件)
     - [快速开始](#快速开始)
-    - [第一步：启动 redis master](#第一步:启动-redis-master)
+    - [第一步：启动 redis master](#第一步-启动-redis-master)
       - [定义 Deployment](#定义-deployment)
       - [定义 Service](#定义-service)
       - [创建 Service](#创建-service)
@@ -51,8 +51,8 @@ This example shows how to build a simple, multi-tier web application using Kuber
         - [DNS 服务](#dns-服务)
       - [创建 Deployment](#创建-deployment)
       - [小插曲](#小插曲)
-    - [第二步：启动 redis slave](#第二步:启动-redis-slave)
-    - [第三步 启动 guestbook 的前端](#第三步-启动-guestbook-的前端)
+    - [第二步：启动 redis slave](#第二步-启动-redis-slave)
+    - [第三步：启动 guestbook 的前端](#第三步-启动-guestbook-的前端)
       - [对前端服务使用 'type: LoadBalancer' （特定云提供商）](#对前端服务使用-type-LoadBalancer-特定云提供商)
     - [第四步：清理](#第四步-清理)
     - [故障排除](#故障排除)
@@ -216,7 +216,7 @@ Before continuing to the gory details, we also recommend you to read Kubernetes 
 **Note**: The redis master in this example is *not* highly available.  Making it highly available would be an interesting, but intricate exercise — redis doesn't actually support multi-master Deployments at this point in time, so high availability would be a somewhat tricky thing to implement, and might involve periodic serialization to disk, and so on.
 -->
 
-### 第一步：启动 redis master
+### 第一步 启动 redis master
 
 在往下浏览详细细节之前，我们建议您先阅读 Kubernetes [概念和用户指南](http://kubernetes.io/docs/user-guide/)。
 
@@ -654,7 +654,7 @@ This time we put the Service and Deployment into one [file](http://kubernetes.io
 The specification for the slaves is in [all-in-one/redis-slave.yaml](https://git.k8s.io/examples/guestbook/all-in-one/redis-slave.yaml):
 -->
 
-### 第二步：启动 redis slave
+### 第二步 启动 redis slave
 
 现在 redis master 是正在运行的，我们可以启动它的 'read slaves' 。
 
@@ -903,7 +903,7 @@ deployment "frontend" created
 对于支持此服务的云提供商（如 Google Compute Engine 或 Google Container Engine ），您可以在service 的 `spec` 中指定使用外部负载均衡器，将 service 暴露到外部负载均衡器的 IP 。
 为此，在启动 service 之前，请取消 [all-in-one/frontend.yaml](https://git.k8s.io/examples/guestbook/all-in-one/frontend.yaml) 文件中的 `type: LoadBalancer` 行的注释。
 
-有关 guestbook 站点外部访问的更多详细信息[请参阅下面的附录](#附录：外部访问 guestbook 站点) 。
+有关 guestbook 站点外部访问的更多详细信息[请参阅下面的附录](#附录 外部访问 guestbook 站点) 。
 
 这样创建 service 和 Deployment:
 
@@ -1059,7 +1059,7 @@ $ <kubernetes>/cluster/kube-down.sh
 ```
 -->
 
-### 第四步:清理
+### 第四步 清理
 
 如果你在一个运行中的 Kubernetes 集群，你可以通过删除 Deployments 和 Services 来杀死pod。 使用 labels 来选择要删除的资源也是一种简单的方法。
 
